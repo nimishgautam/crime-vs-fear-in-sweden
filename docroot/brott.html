@@ -1,0 +1,106 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Swedish Crime and Fear Visualization</title>
+  <link href="./css/default.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Didact+Gothic" rel="stylesheet">
+  <script src="./js/jquery-3.2.1.min.js"></script>
+  <script src="./js/imagesloaded.pkgd.min.js"></script>
+  <script>
+      var includedVisualizations = [
+          "age_gender", // Age and Gender
+          "family", // Family type
+          "background", // Ethnic Background
+          "residence", // City size
+          "education" // Highest education level
+      ];
+
+      var dataSources = {
+        
+        "crime":{
+            "Victims of any crime":"general",
+            "Victims of assault (any)":"assault",
+            "Victims of serious assault": "assault_ext",
+            "Victims of sexual crime":"sexual_harassment",
+            "Victims of threats":"threats",
+            "Victims of harassment":"harassment",
+            "Victims of fraud":"fraud",
+            "Victims of muggings":"muggings"
+        },
+
+        "fear":{
+            "Major anxiety over crime in society":"general",
+            "Insecure about going out at night": "evenings",
+            "Will not go out at night (from fear)": "evenings_ext",
+            "Fear of assault":"assault",
+            "Fear of domestic break-in":"breakins",
+            "Fear of vehicle damage/theft": "cars",
+            "Fear for the safety of loved ones": "close"
+
+        }
+      };
+
+  </script>
+  <script src="./js/main.js"></script>
+</head>
+<body>
+  <div id="body_inner">
+    <h1> Crime and Fear in Sweden 2016</h1>
+    <div id="helpdiv">
+      <span id="helpspan">What is this?</span>
+    </div>
+    <div id="viz_2_col_container">
+      <div id="rootContainer_crime" class="rootContainer" data-visualization_category="crime">
+        <div class="select_root_container">
+          <span id="crime">Crime: </span><select id="data_select_crime">
+          </select>
+        </div>
+        <div id="rootVizContainer_crime" class="rootVizContainer"></div>
+      </div>
+
+      <div id="rootContainer_fear" class="rootContainer" data-visualization_category="fear"> 
+        <div class="select_root_container">
+          <span id="fear">Fear:</span>
+          <select id="data_select_fear">
+          </select>
+        </div>
+        <div id="rootVizContainer_fear" class="rootVizContainer"></div>
+      </div>
+    </div>
+  </div>
+<div id="overlay">
+    <div id="overlay_inner">
+      <div id="close_btn">[X]</div>
+      <h3>Introduction</h3>
+      <p>This visualization shows crime vs fear in Sweden for several different categories of crime. If you select a crime type from the drop-down menu on the left, you'll see the liklihood of different demographic grouops being a victim of that category of crime. Additionally, a dotted line showing the average for that group is also shown.</p>
+      <p>If you choose a category from the drop-down menu on the right, you will see the percentage of people who indicate a high amount of concern about that crime.</p>
+      <p>Some categories are expandable, such as <i>Age and Gender</i>. You can expand it by clicking on the image of the group of people, and then selecting a gender.</p>
+      <h3>Where this data came from</h3>
+      <p>This is data collected from <a href='https://bra.se'>bra.se</a>, or the Swedish National Council for Crime Prevention. The data under 'crime' comes from <i>Brott mot enskilda personer i olika befolkningsgrupper</i>, derived from nationally reported crime data. The data for 'fear' comes from the Swedish Crime Survey (Nationella trygghetsundersökningen), and the data source called <i>Otrygghet och oro för brott i olika befolkningsgrupper</i> (Both can be viewed <a href="https://www.bra.se/brott-och-statistik/statistiska-undersokningar.html">here</a>)</p>
+      <h3>What the numbers mean</h3>
+      <p>The 'crime' numbers indicate the percentage of the population who fit the given demographic and were victims of the category of crime selected.</p>
+      <p>The 'fear' numbers indicate the percentage of people in that demographic slice indicating very high (<i>ganska/mycket ofta</i>) levels of concern or fear (<i>otrygghet</i> or <i>oro</i>) about the given categories on the Swedish Crime Survey</p>
+     
+      <h3>Varför är det inte på svenska?</h3>
+      <p>I'm still learning Swedish. I'm OK-ish, but with something like this, where I'm trying to shorten and summarize results, I want to be sure I'm using the most accurate words I can. </p>
+
+      <h3>About me</h3>
+      <p>I'm a Data Scientist living in Sweden who likes making these kinds of visualizations for fun. Drop me a line at nimish@data<span class="prevspam">nospam</span>strategy.se
+</p>
+    </div>
+</div>
+</body>
+<footer>
+
+  <hr>
+  <div id="footercredits">
+    Data source: <a href="https://bra.se">bra.se</a>. All images <a href="https://creativecommons.org/share-your-work/public-domain/cc0/">CC0</a> from <a href="https://pixabay.com">pixabay</a>
+  </div>
+  <div id="footermore">
+    Made by <a href="https://nimishg.com">Nimish Gåtam</a>. For questions/comments, please email nimish@data<span class="prevspam">nospam</span>strategy.se
+  </div>
+</footer>
+</html>

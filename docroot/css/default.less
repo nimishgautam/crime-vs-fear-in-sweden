@@ -1,0 +1,273 @@
+
+/* Globals */
+
+@default-color:#ffffff;
+@contrast-color: #555555;
+
+@graph-crime-bg: #acbebf;
+@graph-crime-fg: #3a7748;
+
+@graph-fear-bg: @graph-crime-bg;
+@graph-fear-fg: spin(@graph-crime-fg, 360/4);
+
+.small_txt{
+    font-size: 12px;
+}
+
+.default_rendering{
+    background-color: @default-color;
+    color: @contrast-color;
+    font-family: 'Didact Gothic', sans-serif;
+}
+
+.transition(...){
+    -webkit-transition: @arguments;
+    transition: @arguments;
+    transition-timing-function: ease-out;
+}
+
+
+/* title */
+h1{
+    text-align: center;
+}
+
+h2{
+    text-align: center;
+}
+
+.title_case
+{
+    font-size: 30px;
+}
+
+#crime{
+    color: @graph-crime-fg;
+    .title_case;
+}
+
+
+#fear{
+    color: @graph-fear-fg;
+    .title_case;
+}
+
+body{
+    .default_rendering;
+}
+
+select{
+    .default_rendering;
+    .title_case;
+    border: none;
+    cursor: pointer;
+}
+
+
+.rootContainer{
+    width: 45%;
+    margin: 2%;
+    display: inline-block;
+}
+
+.select_root_container{
+    text-align: center;
+}
+/* Visualization object */
+
+.viz_title_container {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.viz_subtitle{
+    .small_txt;
+}
+
+.root_visualization_container{
+    display: inline;
+    margin: 10px;
+}
+
+.select_outer_container{
+    float: left;
+}
+
+.select_container {
+    
+    overflow: hidden;
+    position: relative;
+    // .transition(height 1s;); 
+}
+
+.select_container[data-state="open"]{
+    border: 1px dashed @contrast-color;
+}
+
+.expandible-select{
+    cursor: pointer;
+    .transition(border-color .5s;);
+    border: 1px dashed;
+    border-color: fade(@contrast-color, 0%);
+    &:hover {
+        border-color: @contrast-color;
+    }
+}
+
+
+/* Selection object */
+
+.select_obj_label {
+    text-align: center;
+}
+
+.select_graph_container {
+    display: flex;
+    align-items: center;
+}
+
+.selection_obj {
+    position: relative;
+    text-align: center;
+    img{
+        position: relative;
+    }
+}
+
+/* Graph object */
+
+@label_width: 15%;
+
+.subunit_whole_graph{
+    display: flex;
+    align-items: center;
+    margin: 2%;
+    cursor: default;
+}
+
+.subunit_label{
+    width: @label_width;
+    display: inline-block;
+    text-align: center;
+    .small_txt;
+}
+
+.subunit_outer{
+    display: inline-block;
+    width: 100 - @label_width;
+    position: relative;
+    height: 1em;
+    //width: 100%;
+}
+
+.graphs_outer_container{
+    float: right;
+    width: 75%;
+}
+
+.subunit_inner{
+    text-align: right;
+    overflow: hidden;
+    height: 100%;
+    .small_txt;
+}
+
+.avg_line{
+    position: absolute;
+    z-index: -100;
+    opacity: 0.7;
+    border-left: 1px dashed;
+}
+
+[data-visualization_category="crime"] {
+    .avg_line{
+        border-color: darken(@graph-crime-bg, 20%);
+    }    
+    .subunit_inner{
+        background-color: @graph-crime-fg;
+        color: @graph-crime-bg;
+    }
+    .subunit_outer {
+        background-color: @graph-crime-bg;
+    }
+}
+
+
+[data-visualization_category="fear"] {
+    .avg_line{
+        border-color: darken(@graph-fear-bg, 20%);
+    }    
+    .subunit_inner{
+        background-color: @graph-fear-fg;
+        color: @graph-fear-bg;
+    }
+    .subunit_outer {
+        background-color: @graph-fear-bg;
+    }
+}
+
+footer{
+    text-align: center;
+    hr{
+        border-color: @graph-crime-bg;
+        border-style: ridge;
+    }
+}
+
+#helpdiv{
+    font-weight: 100;
+    text-align: center;
+}
+
+#helpspan{
+    cursor:pointer;
+    border-bottom: 1px dashed @graph-crime-bg;
+}
+
+
+.blur_bg{
+        filter:blur(4px);
+    -o-filter:blur(4px);
+    -ms-filter:blur(4px);
+    -moz-filter:blur(4px);
+    -webkit-filter:blur(4px);
+
+}
+
+#overlay_inner{
+    margin-left: 10%;
+    width: 75%;
+    height: 75%;
+    padding: 2%;
+    background-color: white;
+    overflow: scroll;
+}
+
+#close_btn{
+    float: right;
+    color: #e4dada;
+    background-color: #d27070;
+    border-radius: 3px;
+    padding: 2px;
+    cursor: pointer;
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    filter:alpha(opacity=90);
+    -moz-opacity:0.9;
+    -khtml-opacity: 0.9;
+    opacity: 0.9;
+    display: flex;
+    align-items: center;
+    z-index: 1000;
+}
+
+.prevspam{
+    display:none;
+}
